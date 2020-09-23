@@ -1,7 +1,7 @@
 ﻿namespace AccountManager.Interfaces.Accounts
 {
     /// <summary>
-    /// Models a set of insecure account credentials
+    /// Describes a set of insecure account credentials
     /// </summary>
     public interface IAccountCredentials
     {
