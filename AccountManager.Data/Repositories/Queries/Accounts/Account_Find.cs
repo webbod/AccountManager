@@ -29,7 +29,7 @@ namespace AccountManager.Data.Repositories.Queries.Accounts
         )]
         public override Account ExecuteQuery()
         {
-            return ExecuteQuery("SELECT [Id], [EmailAddress], [HashedPassword] FROM [Accounts] WHERE [EmailAddress] = @EmailAddress;")?.FirstOrDefault();
+            return ExecuteQuery("Account_Find")?.FirstOrDefault();
         }
 
         public override Account Mapper(IDataRecord reader)
