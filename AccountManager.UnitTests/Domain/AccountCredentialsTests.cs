@@ -2,7 +2,7 @@ using AccountManager.Domain.Models;
 using System;
 using Xunit;
 
-namespace AccountManager.UnitTests.Credentials
+namespace AccountManager.UnitTests.Domain
 {
     public class AccountCredentialsTests
     {
