@@ -24,12 +24,12 @@ namespace AccountManager.Data.Repositories.Queries.Accounts
 
 
         [DatabaseDependency(
-            name: "Account_Update",
+            name: "AccountUpdate",
             DatabaseDependency.Element.StoredProcedure
         )]
         public override int ExecuteNonQuery()
         {
-            return ExecuteNonQuery("Account_Update");
+            return ExecuteNonQuery("AccountUpdate");
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿# SQL DataStore
-This is where most of the complexity in the solution sits.
+This is where most of the complexity in the solution sits. There are no automated tests for the database layer.
 
 
 **SqlDataStoreConfigurationSettings** models a set of configuration settings that would be in an *appsettings.json* file.

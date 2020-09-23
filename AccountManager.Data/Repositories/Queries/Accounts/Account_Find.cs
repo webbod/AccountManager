@@ -23,13 +23,12 @@ namespace AccountManager.Data.Repositories.Queries.Accounts
         }
 
         [DatabaseDependency(
-            name:"Accounts", 
-            DatabaseDependency.Element.Table, 
-            DatabaseDependency.MaintainenceRisk.RawSQLStatement
+            name: "AccountFind", 
+            DatabaseDependency.Element.StoredProcedure
         )]
         public override Account ExecuteQuery()
         {
-            return ExecuteQuery("Account_Find")?.FirstOrDefault();
+            return ExecuteQuery("AccountFind")?.FirstOrDefault();
         }
 
         public override Account Mapper(IDataRecord reader)
