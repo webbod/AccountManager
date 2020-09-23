@@ -11,7 +11,7 @@ You will find everything here that you need to create a database for the project
 
 1. Firstly you will need to build the project
 2. Open the **Database.publish.xml** file configure and a connection to your database server.
-  * If you already have an **empty** database then fill in the *Database Name* field.
+    * If you already have an **empty** database then fill in the *Database Name* field.
 3. If you didn't specify a database in your connection settings then fill in *Database Name* to create a new one.
 4. You've downloaded this off the Internet, so hit *Generate Script* and review the table creation script.
 5. If you are happt then you can hit *Publish* or run the script manually.
