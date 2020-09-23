@@ -1,11 +1,8 @@
 ﻿# Database Architecture
-The project intentionally does not use an ORM and isn't particularly complex, so it is very simple:
+The project intentionally does not use an ORM and isn't particularly complex, the database is very simple:
 1. **Accounts** table to track email addresses and passwords - hashes of passwords.
 2. **AccountFind** stored procedure that finds accounts by email address.
 3. **AccountUpdate** stored produre that manages inserting and updating new accounts.
-
-
-
 
 ## Installation
 You will find everything here that you need to create a database for the project.
