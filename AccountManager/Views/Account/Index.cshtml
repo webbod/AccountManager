@@ -1,0 +1,37 @@
+﻿@model AccountManager.Models.CredentialsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Account Manager</h1>
+
+@if (Model.WasSaved)
+{
+    <div class="account-created">
+        <h4>An account for @Model.EmailAddress has been created</h4>
+        <a href="/">Add Another One?</a>
+    </div>
+}
+else
+{
+    <partial name="Partials/_CredentialsForm" model="Model"/>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(() => {
+            /*Disable keyup validation on focus and restore it to onkeyup validation mode on blur*/
+            $("form input[data-val-remote-url]").on({
+                focus: function () {
+                    $(this).closest('form').validate().settings.onkeyup = false;
+                },
+                blur: function () {
+                    $(this).closest('form').validate().settings.onkeyup = $.validator.defaults.onkeyup;
+                }
+            });
+        });
+    </script>
+}
