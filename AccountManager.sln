@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManager.Data", "AccountManager.Data\AccountManager.Data.csproj", "{25708528-EBF2-4533-8558-3A65DC117722}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManager.Data", "AccountManager.Data\AccountManager.Data.csproj", "{25708528-EBF2-4533-8558-3A65DC117722}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManager.Domain", "AccountManager.Domain\AccountManager.Domain.csproj", "{AD1C5D4B-C00E-4BEE-B80B-77E08D718952}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManager.Domain", "AccountManager.Domain\AccountManager.Domain.csproj", "{AD1C5D4B-C00E-4BEE-B80B-77E08D718952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManager.Interfaces", "AccountManager.Interfaces\AccountManager.Interfaces.csproj", "{16997BEC-6073-4DA6-AF87-B914D56F3945}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManager.Interfaces", "AccountManager.Interfaces\AccountManager.Interfaces.csproj", "{16997BEC-6073-4DA6-AF87-B914D56F3945}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{0A8C1D71-2351-4CE4-8D13-15608FF91BC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManager", "AccountManager\AccountManager.csproj", "{33EFA212-C342-48CD-A2F7-2824C79C8768}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManager", "AccountManager\AccountManager.csproj", "{33EFA212-C342-48CD-A2F7-2824C79C8768}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManager.Attributes", "AccountManager.Attributes\AccountManager.Attributes.csproj", "{BEFDF5D6-D0A4-49ED-B8C5-9CCCE2CC485E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManager.Attributes", "AccountManager.Attributes\AccountManager.Attributes.csproj", "{BEFDF5D6-D0A4-49ED-B8C5-9CCCE2CC485E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0B87A193-DB9B-4D63-84F2-71977E4F3B67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManager.UnitTests", "AccountManager.UnitTests\AccountManager.UnitTests.csproj", "{514E02E9-F6CF-444C-B160-D581CD09C688}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManager.UnitTests", "AccountManager.UnitTests\AccountManager.UnitTests.csproj", "{514E02E9-F6CF-444C-B160-D581CD09C688}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +60,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{33EFA212-C342-48CD-A2F7-2824C79C8768} = {0B87A193-DB9B-4D63-84F2-71977E4F3B67}
 		{514E02E9-F6CF-444C-B160-D581CD09C688} = {0B87A193-DB9B-4D63-84F2-71977E4F3B67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
