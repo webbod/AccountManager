@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManager", "AccountMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManager.Attributes", "AccountManager.Attributes\AccountManager.Attributes.csproj", "{BEFDF5D6-D0A4-49ED-B8C5-9CCCE2CC485E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0B87A193-DB9B-4D63-84F2-71977E4F3B67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManager.UnitTests", "AccountManager.UnitTests\AccountManager.UnitTests.csproj", "{514E02E9-F6CF-444C-B160-D581CD09C688}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,9 +51,16 @@ Global
 		{BEFDF5D6-D0A4-49ED-B8C5-9CCCE2CC485E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEFDF5D6-D0A4-49ED-B8C5-9CCCE2CC485E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEFDF5D6-D0A4-49ED-B8C5-9CCCE2CC485E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{514E02E9-F6CF-444C-B160-D581CD09C688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{514E02E9-F6CF-444C-B160-D581CD09C688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{514E02E9-F6CF-444C-B160-D581CD09C688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{514E02E9-F6CF-444C-B160-D581CD09C688}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{514E02E9-F6CF-444C-B160-D581CD09C688} = {0B87A193-DB9B-4D63-84F2-71977E4F3B67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {991DCC97-FAA9-4F92-A4C7-189343ED912F}
