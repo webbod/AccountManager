@@ -43,6 +43,8 @@ namespace AccountManager.Data.Repositories
             return Find(credentials.EmailAddress);
         }
 
+
+        /// <exception cref="InvalidOperationException"></exception>
         public int Delete(string emailAddress, bool deleteIt = false)
         {
             if (!deleteIt)
