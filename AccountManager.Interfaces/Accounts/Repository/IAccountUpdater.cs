@@ -1,7 +1,7 @@
 ﻿using AccountManager.Interfaces.DataStore;
 using System.ComponentModel;
 
-namespace AccountManager.Interfaces.Accounts
+namespace AccountManager.Interfaces.Accounts.Repository
 {
     public interface IAccountUpdater
     {

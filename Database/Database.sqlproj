@@ -67,6 +67,7 @@
     <Build Include="dbo\Stored Procedures\AccountUpdate.sql" />
     <Build Include="dbo\Stored Procedures\AccountFind.sql" />
     <None Include="README.md" />
+    <Build Include="dbo\Stored Procedures\AccountDelete.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Database.publish.xml" />

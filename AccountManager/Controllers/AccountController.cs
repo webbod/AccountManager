@@ -1,6 +1,5 @@
 ﻿using AccountManager.Data;
-using AccountManager.Domain.Models;
-using AccountManager.Interfaces.Accounts;
+using AccountManager.Interfaces.Accounts.Repository;
 using AccountManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;

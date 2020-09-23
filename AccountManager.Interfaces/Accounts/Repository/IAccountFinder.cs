@@ -1,6 +1,6 @@
 ﻿using AccountManager.Interfaces.DataStore;
 
-namespace AccountManager.Interfaces.Accounts
+namespace AccountManager.Interfaces.Accounts.Repository
 {
     /// <summary>
     /// Describes a mechanism for Finding Accounts

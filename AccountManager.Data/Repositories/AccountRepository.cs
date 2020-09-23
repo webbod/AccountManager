@@ -3,15 +3,17 @@ using AccountManager.Data.Repositories.Queries.Accounts;
 using AccountManager.Domain.Models;
 using AccountManager.Interfaces.DataStore;
 using AccountManager.Interfaces.Accounts;
+using AccountManager.Interfaces.Accounts.Repository;
 using System.Collections.Generic;
 using System.Data.Common;
+using System;
 
 namespace AccountManager.Data.Repositories
 {
     /// <summary>
     /// Acts as a facade to the Account data store
     /// </summary>
-    public class AccountRepository : IAccountFinder, IAccountUpdater
+    public class AccountRepository : IAccountFinder, IAccountUpdater, IAccountDeleter
     {
         private string _ConnectionString;
 
@@ -39,6 +41,16 @@ namespace AccountManager.Data.Repositories
         {
             AccountCredentials.TryValidate(credentials);
             return Find(credentials.EmailAddress);
+        }
+
+        public int Delete(string emailAddress, bool deleteIt = false)
+        {
+            if (!deleteIt)
+            {
+                throw new InvalidOperationException();
+            }
+
+            return new Account_Delete(emailAddress, _ConnectionString).ExecuteNonQuery();
         }
 
         public IAccount Update(IAccountCredentials credentials)

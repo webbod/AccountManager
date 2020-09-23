@@ -1,10 +1,8 @@
 ﻿using AccountManager.Data;
 using AccountManager.Data.Repositories;
-using AccountManager.Interfaces.Accounts;
+using AccountManager.Interfaces.Accounts.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -39,6 +37,7 @@ namespace AccountManager
             // add the services
             services.AddScoped<IAccountFinder, AccountRepository>();
             services.AddScoped<IAccountUpdater, AccountRepository>();
+            // there is no implementation of the IAccountDeleter interface on purpose
 
             services.AddControllersWithViews();
         }
