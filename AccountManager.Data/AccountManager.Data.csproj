@@ -4,6 +4,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <!--Allows Internal methods to be unit tested-->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>AccountManager.UnitTests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\AccountManager.Domain\AccountManager.Domain.csproj" />
     <ProjectReference Include="..\AccountManager.Interfaces\AccountManager.Interfaces.csproj" />
