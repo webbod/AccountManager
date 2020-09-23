@@ -6,4 +6,5 @@ This is where most of the complexity in the solution sits.
 
 #### Services
 1. **HashingService** a simple alternative to MD5 that generates deterministic garbage - feel free to customise the prime numbers **before** you hash any data.
+2. **QueryService** encapsulates all of the SQL connection/command object with a simple mapping method
 
