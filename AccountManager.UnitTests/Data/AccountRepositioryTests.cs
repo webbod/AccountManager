@@ -4,6 +4,7 @@ using AccountManager.Data.Helpers;
 using AccountManager.Data.Repositories;
 using AccountManager.Domain.Models;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace AccountManager.UnitTests.Data
@@ -60,6 +61,17 @@ namespace AccountManager.UnitTests.Data
             Assert.Equal(account.Id, otherAccount.Id);
 
             CleanUp(account.EmailAddress);
+        }
+
+        [Fact]
+        public void ADeletedAccountCanNoLongerBeFound()
+        {
+            var credentials = GenerateCredentials();
+            var account = _AccountRepository.Update(credentials);
+
+            _AccountRepository.Delete(account.EmailAddress, true);
+
+            Assert.Throws<KeyNotFoundException>(() => _AccountRepository.Find(account.EmailAddress));
         }
 
         [Fact]
