@@ -1,22 +1,39 @@
 ﻿@model AccountManager.Models.CredentialsViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Account Manager Demo";
 }
 
-<h1>Account Manager</h1>
+<div class="container">
 
-@if (Model.WasSaved)
-{
-    <div class="account-created">
-        <h4>An account for @Model.EmailAddress has been created</h4>
-        <a href="/">Add Another One?</a>
-    </div>
-}
-else
-{
-    <partial name="Partials/_CredentialsForm" model="Model"/>
-}
+    @if (Model.WasSaved)
+    {
+        <div class="wrapper show-stars">
+            <partial name="Partials/_Success" model="Model" />
+
+            <ul class="bg-stars">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    }
+    else
+    {
+        <div class="wrapper">
+            <partial name="Partials/_CredentialsForm" model="Model" />
+        </div>
+    }
+
+</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

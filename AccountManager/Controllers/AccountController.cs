@@ -26,6 +26,7 @@ namespace AccountManager.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(CredentialsViewModel model)
         {
             if (ModelState.IsValid)
