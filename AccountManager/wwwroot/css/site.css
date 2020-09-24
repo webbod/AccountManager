@@ -64,12 +64,10 @@ body {
 }
 
 .wrapper {
-    background: linear-gradient(to bottom right, var(--light) 0%, var(--dark) 100%);
     position: absolute;
     left: 0;
     width: 100%;
     overflow: hidden;
-    padding: 1.5rem 0;
     text-align: center;
     box-shadow: 0px 0px 0px 16px rgba(32,32,32,0.2);
     border-top: #222 1px solid;
@@ -77,9 +75,15 @@ body {
     z-index: 1;
 }
 
+    .wrapper.theForm {
+        background: linear-gradient(to bottom right, var(--light) 0%, var(--dark) 100%);
+        padding: 3.5rem 0;
+        animation: theForm 0.5s ease-in-out;
+    }
+
     .wrapper.success {
         background: linear-gradient(to bottom right, hsl(316deg 34% 48%) 0%, hsl(26deg 72% 61%) 100%);
-        padding: 3.75rem 0;
+        padding: 3.5rem 0;
         animation: success 1s ease-in-out;
     }
 
@@ -109,7 +113,7 @@ body {
     }
 
 form {
-    padding: 20px 0;
+    padding: 1rem 0 0 0;
     position: relative;
     z-index: 2;
 }
@@ -145,7 +149,7 @@ form {
     form button {
         outline: 0;
         background-color: white;
-        border: 0;
+        border: transparent 2px solid;
         padding: 10px 15px;
         color: var(--dark);
         border-radius: 3px;
@@ -159,7 +163,8 @@ form {
 
         .button-link:hover,
         form button:hover {
-            background-color: #f5f7f9;
+            background-color: rgba(255,255,255,0.8);
+            border: white 2px solid;
         }
 
 a {
@@ -209,15 +214,35 @@ a {
 @keyframes success {
     0% {
         padding:0px;
-        max-height:0px
+        opacity:0;
+    }
+
+    50% {
+        opacity: 0.8;
     }
 
     100% {
-        padding:3.75rem;
-        max-height:500px;
+        padding:3.5rem;
+        opacity:1;
     }
 }
 
+
+@keyframes theForm {
+    0% {
+        padding: 0px;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        padding: 3.5rem;
+        opacity: 1;
+    }
+}
 
 .validation-group {
     display: block;
