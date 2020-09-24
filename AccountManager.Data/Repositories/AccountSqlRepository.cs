@@ -11,13 +11,13 @@ using System;
 namespace AccountManager.Data.Repositories
 {
     /// <summary>
-    /// Acts as a facade to the Account data store
+    /// Acts as a facade to the Account sql data store
     /// </summary>
-    public class AccountRepository : IAccountFinder, IAccountUpdater, IAccountDeleter
+    public class AccountSqlRepository : IAccountFinder, IAccountUpdater, IAccountDeleter
     {
         private string _ConnectionString;
 
-        public AccountRepository() { }
+        public AccountSqlRepository() { }
 
         public void Initalise(ISetOfConfigrationSettings options)
         {

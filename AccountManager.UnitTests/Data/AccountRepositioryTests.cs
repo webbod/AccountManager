@@ -11,7 +11,7 @@ namespace AccountManager.UnitTests.Data
 {
     public class  AccountRepositioryTests
     {
-        private AccountRepository _AccountRepository;
+        private AccountSqlRepository _AccountRepository;
 
         public AccountRepositioryTests()
         {
@@ -20,7 +20,7 @@ namespace AccountManager.UnitTests.Data
                 ConnectionString = "Server=localhost\\sqlexpress;Database=AccountManagerDemo;User Id=test;Password=test;"
             };
 
-            _AccountRepository = new AccountRepository();
+            _AccountRepository = new AccountSqlRepository();
             _AccountRepository.Initalise(config);
         }
 

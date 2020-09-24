@@ -35,8 +35,8 @@ namespace AccountManager
             services.Configure<SqlDataStoreConfigurationSettings>(options => Configuration.GetSection("DefaultConnection").Bind(options));
 
             // add the services
-            services.AddScoped<IAccountFinder, AccountRepository>();
-            services.AddScoped<IAccountUpdater, AccountRepository>();
+            services.AddScoped<IAccountFinder, AccountSqlRepository>();
+            services.AddScoped<IAccountUpdater, AccountSqlRepository>();
             // there is no implementation of the IAccountDeleter interface on purpose
 
             services.AddControllersWithViews();
