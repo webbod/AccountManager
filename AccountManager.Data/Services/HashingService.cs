@@ -98,8 +98,8 @@ namespace AccountManager.Data.Helpers
         private void SetInputMultiplier()
         {
             _InputMultiplier = ((int)_Input[0] * (int)_Input.Last()) % 2 == 0 ?
-                    ((int)_Input[2]) % 11 :
-                    ((int)_Input.Reverse().Skip(1).First()) % 37;
+                    ((int)_Input[2]) % 11 + 1:
+                    ((int)_Input.Reverse().Skip(1).First()) % 37 + 1;
         }
 
         private void SetEndPoint()
