@@ -4,32 +4,16 @@
     ViewData["Title"] = "Account Manager Demo";
 }
 
+
 <div class="container">
 
     @if (Model.WasSaved)
     {
-        <div class="wrapper show-stars">
-            <partial name="Partials/_Success" model="Model" />
-
-            <ul class="bg-stars">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
+        <partial name="Partials/_Success" model="Model" />
     }
     else
     {
-        <div class="wrapper">
-            <partial name="Partials/_CredentialsForm" model="Model" />
-        </div>
+        <partial name="Partials/_CredentialsForm" model="Model" />
     }
 
 </div>

@@ -1,8 +1,30 @@
 ﻿@model AccountManager.Models.CredentialsViewModel
+@functions {
 
-<h1>Success!</h1>
-<p>
-    An account has been created for:<br/>
-    <strong>@Model.EmailAddress</strong>
-</p>
-<a href="/" class="button-link">Add Another Account?</a>
+    void DrawStar(int left, int size, int delay, int duration)
+    {
+        <li style="@($"--left:{left}%;--width:{size}px;--height:{size}px;--animation-delay:{delay}s;--animation-duration:{duration}s;")"></li>
+    }
+}
+<div class="wrapper success">
+    <ul class="bg-stars">
+        @{
+            DrawStar(10, 40, 0, 10);
+            DrawStar(20, 80, 2, 20);
+            DrawStar(30, 60, 5, 15);
+            DrawStar(40, 100, 8, 5);
+            DrawStar(50, 40, 2, 10);
+            DrawStar(60, 80, 0, 20);
+            DrawStar(70, 20, 6, 15);
+            DrawStar(80, 60, 10, 10);
+            DrawStar(90, 40, 3, 20);
+            DrawStar(100, 20, 5, 15);
+        }
+    </ul>
+    <h1>Success!</h1>
+    <p>
+        An account has been created for:<br />
+        <strong>@Model.EmailAddress</strong>
+    </p>
+    <a href="/" class="button-link">Add Another Account?</a>
+</div>
