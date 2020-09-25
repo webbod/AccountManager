@@ -5,11 +5,8 @@ namespace AccountManager.Interfaces.Accounts.Repository
     /// <summary>
     /// Describes a mechanism for Finding Accounts
     /// </summary>
-    public interface IAccountFinder
+    public interface IAccountFinder : IFinder<string, IAccount>
     {
-        void Initalise(ISetOfConfigrationSettings options);
-
-        IAccount Find(IAccountCredentials credentials);
-        IAccount Find(string emailAddress);
+        IAccount Find(IAccountCredentials credentials);   
     }
 }

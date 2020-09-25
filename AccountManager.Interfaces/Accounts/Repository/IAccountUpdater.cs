@@ -1,12 +1,8 @@
 ﻿using AccountManager.Interfaces.DataStore;
-using System.ComponentModel;
 
 namespace AccountManager.Interfaces.Accounts.Repository
 {
-    public interface IAccountUpdater
+    public interface IAccountUpdater : IUpdater<IAccountCredentials, IAccount>
     {
-        void Initalise(ISetOfConfigrationSettings options);
-
-        IAccount Update(IAccountCredentials credentials);
     }
 }
