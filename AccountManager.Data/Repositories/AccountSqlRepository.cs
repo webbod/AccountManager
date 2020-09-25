@@ -13,7 +13,7 @@ namespace AccountManager.Data.Repositories
     /// <summary>
     /// Acts as a facade to the Account sql data store
     /// </summary>
-    public class AccountSqlRepository : IAccountFinder, IAccountUpdater, IAccountDeleter, IAccountInserter
+    public class AccountSqlRepository :  IAccountFinder, IAccountUpdater, IAccountDeleter, IAccountInserter
     {
         private string _ConnectionString;
 
@@ -25,7 +25,7 @@ namespace AccountManager.Data.Repositories
         }
 
         /// <exception cref="KeyNotFoundException"></exception>
-        public IAccount Find(string emailAddress)
+        public Interfaces.Accounts.IAccount Find(string emailAddress)
         {
             var account = new Account_Find(emailAddress, _ConnectionString).ExecuteQuery();
 
@@ -37,7 +37,7 @@ namespace AccountManager.Data.Repositories
             return account;
         }
 
-        public IAccount Find(IAccountCredentials credentials)
+        public Interfaces.Accounts.IAccount Find(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
             return Find(credentials.EmailAddress);
@@ -56,19 +56,19 @@ namespace AccountManager.Data.Repositories
         }
 
         /// <exception cref="KeyNotFoundException">If the account is not found</exception>
-        public IAccount Update(IAccountCredentials credentials)
+        public Interfaces.Accounts.IAccount Update(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
             return UpdateAccount(credentials);
         }
 
-        public IAccount Insert(IAccountCredentials credentials)
+        public Interfaces.Accounts.IAccount Insert(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
             return InsertAccount(credentials);
         }
 
-        private IAccount CreateAccount(IAccountCredentials credentials)
+        private Interfaces.Accounts.IAccount CreateAccount(IAccountCredentials credentials)
         {
             var account = new Account(credentials);
             account.Id = new Account_Insert(account, _ConnectionString).ExecuteNonQuery();
@@ -77,7 +77,7 @@ namespace AccountManager.Data.Repositories
         }
 
         /// <exception cref="NotSupportedException">If the account already exists</exception>
-        private IAccount InsertAccount(IAccountCredentials credentials)
+        private Interfaces.Accounts.IAccount InsertAccount(IAccountCredentials credentials)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace AccountManager.Data.Repositories
             }
         }
 
-        private IAccount UpdateAccount(IAccountCredentials credentials)
+        private Interfaces.Accounts.IAccount UpdateAccount(IAccountCredentials credentials)
         {
             var account = ((Account)Find(credentials.EmailAddress)).ApplyNewCredentials(credentials);
             account.Id = new Account_Update(account, _ConnectionString).ExecuteNonQuery();

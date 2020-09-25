@@ -13,7 +13,7 @@ namespace AccountManager.Data.Repositories
     /// <summary>
     /// Acts as a facade to the Account file data store
     /// </summary>
-    public class AccountFileRepository : IAccountFinder, IAccountUpdater, IAccountDeleter
+    public class AccountFileRepository : IAccountFinder, IAccountUpdater, IAccountDeleter, IAccountInserter
     {
         private string _ConnectionString;
 
@@ -25,7 +25,7 @@ namespace AccountManager.Data.Repositories
         }
 
         /// <exception cref="KeyNotFoundException"></exception>
-        public IAccount Find(string emailAddress)
+        public Interfaces.Accounts.IAccount Find(string emailAddress)
         {
             var account = new Account_Find(emailAddress, _ConnectionString).ExecuteQuery();
 
@@ -37,7 +37,7 @@ namespace AccountManager.Data.Repositories
             return account;
         }
 
-        public IAccount Find(IAccountCredentials credentials)
+        public Interfaces.Accounts.IAccount Find(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
             return Find(credentials.EmailAddress);
@@ -55,7 +55,7 @@ namespace AccountManager.Data.Repositories
             return new Account_Delete(emailAddress, _ConnectionString).ExecuteNonQuery();
         }
 
-        public IAccount Update(IAccountCredentials credentials)
+        public Interfaces.Accounts.IAccount Update(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
             
@@ -69,7 +69,7 @@ namespace AccountManager.Data.Repositories
             }
         }
 
-        private IAccount CreateAccount(IAccountCredentials credentials)
+        private Interfaces.Accounts.IAccount CreateAccount(IAccountCredentials credentials)
         {
             var account = new Account(credentials);
             account.Id = new Account_Insert(account, _ConnectionString).ExecuteNonQuery();
@@ -77,12 +77,18 @@ namespace AccountManager.Data.Repositories
             return account;
         }
 
-        private IAccount UpdateAccount(IAccountCredentials credentials)
+        private Interfaces.Accounts.IAccount UpdateAccount(IAccountCredentials credentials)
         {
             var account = ((Account)Find(credentials.EmailAddress)).ApplyNewCredentials(credentials);
             account.Id = new Account_Update(account, _ConnectionString).ExecuteNonQuery();
 
             return account;
+        }
+
+        public IAccount Insert(IAccountCredentials credentials)
+        {
+            // fix this later
+            throw new NotImplementedException();
         }
     }
 }
