@@ -3,6 +3,7 @@ using AccountManager.Interfaces.Accounts.Repository;
 using AccountManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 
 namespace AccountManager.Controllers
@@ -10,15 +11,15 @@ namespace AccountManager.Controllers
     public class AccountController : Controller
     {
 
+        private IAccountInserter _InserterService; 
         private IAccountFinder _FinderService;
-        private IAccountUpdater _UpdaterService;
 
-        public AccountController(IAccountFinder finderService, IAccountUpdater updaterService, IOptions<SqlDataStoreConfigurationSettings> options)
+        public AccountController(IAccountInserter inserterService, IAccountFinder finderService,  IOptions<SqlDataStoreConfigurationSettings> options)
         {
+            _InserterService = inserterService;
+            _InserterService.Initalise(options.Value);
             _FinderService = finderService;
             _FinderService.Initalise(options.Value);
-            _UpdaterService = updaterService;
-            _UpdaterService.Initalise(options.Value);
         }
         public IActionResult Index()
         { 
@@ -29,17 +30,24 @@ namespace AccountManager.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(CredentialsViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _UpdaterService.Update(model);
-                model.WasSaved = true;
-                
-                // we don't need this anymore
-                model.PlainTextPassword = string.Empty;
+                if (ModelState.IsValid)
+                {
+                    _InserterService.Insert(model);
+                    model.WasSaved = true;
 
-                return View(model);
+                    // we don't need this anymore
+                    model.PlainTextPassword = string.Empty;
+
+                    return View(model);
+                }
             }
-            
+            catch (NotSupportedException)
+            {
+                ModelState.AddModelError("AccountExists", "That account already exists");
+            }
+
             return View(model);
         }
 

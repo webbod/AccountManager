@@ -36,8 +36,9 @@ namespace AccountManager
 
             // add the services
             services.AddScoped<IAccountFinder, AccountSqlRepository>();
-            services.AddScoped<IAccountUpdater, AccountSqlRepository>();
-            // there is no implementation of the IAccountDeleter interface on purpose
+            services.AddScoped<IAccountInserter, AccountSqlRepository>();
+            //services.AddScoped<IAccountUpdater, AccountSqlRepository>();
+            //services.AddScoped<IAccountDeleter, AccountSqlRepository>();
 
             services.AddControllersWithViews();
         }
