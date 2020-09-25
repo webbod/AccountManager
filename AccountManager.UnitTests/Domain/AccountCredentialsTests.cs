@@ -6,44 +6,54 @@ namespace AccountManager.UnitTests.Domain
 {
     public class AccountCredentialsTests
     {
-        [Theory]
-        [InlineData("", null, true)]
-        [InlineData("e@ma.il", "", true)]
-        [InlineData("", "password", true)]
-        [InlineData("e@ma.il", "password", false)]
-        public void CredentialsAreValidIfNothingIsNullOrEmpty(string emailAddress, string plainTextPassword, bool shouldThrowException)
-        {
-            var credentials = new AccountCredentials { EmailAddress = emailAddress, PlainTextPassword = plainTextPassword };
+        private const string VALID_PASSWORD = "Pa55w0rd!";
+        private const string VALID_EMAILADDRESS = "email@mail.com";
 
+        private bool TestTryValidate(AccountCredentials credentials)
+        {
             try
             {
-                var actual = AccountCredentials.TryValidate(credentials);
-                Assert.True(actual);
+                return AccountCredentials.TryValidate(credentials);
             }
-            catch(ArgumentNullException)
+            catch (ArgumentNullException)
             {
-                Assert.True(shouldThrowException);
-            }   
+                return false;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return false;
+            }
+        }
+
+        [Theory]
+        [InlineData("", null, false)]
+        [InlineData(VALID_EMAILADDRESS, "", false)]
+        [InlineData("", VALID_PASSWORD, false)]
+        [InlineData(VALID_EMAILADDRESS, VALID_PASSWORD, true)]
+        public void CredentialsAreValidIfNothingIsNullOrEmpty(string emailAddress, string plainTextPassword, bool shouldBeValid)
+        {
+            var credentials = new AccountCredentials { EmailAddress = emailAddress, PlainTextPassword = plainTextPassword };
+            Assert.Equal(shouldBeValid, TestTryValidate(credentials));
         }
 
         [Theory]
         [InlineData("e@l", false)]
         [InlineData("email@mail.commmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm", false)]
-        [InlineData("email@mail.com", true)]
+        [InlineData(VALID_EMAILADDRESS, true)]
         public void AnEmailAddressShouldBeTheCorrectLength(string emailAddress, bool shouldBeValid)
         {
-            var credentials = new AccountCredentials { EmailAddress = emailAddress, PlainTextPassword = "P@55w0rd!" };
-            Assert.Equal(shouldBeValid, credentials.EmailAddressIsValid);
+            var credentials = new AccountCredentials { EmailAddress = emailAddress, PlainTextPassword = VALID_PASSWORD };
+            Assert.Equal(TestTryValidate(credentials), shouldBeValid);
         }
 
         [Theory]
         [InlineData("Pa55!", false)]
         [InlineData("Pa55!Pa55!Pa55!Pa55!Pa55!Pa55!Pa55!", false)]
-        [InlineData("Pa55w0rd!", true)]
+        [InlineData(VALID_PASSWORD, true)]
         public void APasswordShouldBeTheCorrectLength(string password, bool shouldBeValid)
         {
-            var credentials = new AccountCredentials { EmailAddress = "email@mail.com", PlainTextPassword = password };
-            Assert.Equal(shouldBeValid, credentials.PlainTextPasswordIsValid);
+            var credentials = new AccountCredentials { EmailAddress = VALID_EMAILADDRESS, PlainTextPassword = password };
+            Assert.Equal(TestTryValidate(credentials), shouldBeValid);
         }
 
         [Theory]
@@ -51,11 +61,11 @@ namespace AccountManager.UnitTests.Domain
         [InlineData("pa55w0rd", false)]     // no capital letter
         [InlineData("PA55W0RD!", false)]    // no lowercase letter
         [InlineData("Pa55w0rd", false)]     // no symbol
-        [InlineData("Pa55w0rd!", true)]
+        [InlineData(VALID_PASSWORD, true)]
         public void APasswordShouldBeInTheCorrectFormat(string password, bool shouldBeValid)
         {
-            var credentials = new AccountCredentials { EmailAddress = "email@mail.com", PlainTextPassword = password };
-            Assert.Equal(shouldBeValid, credentials.PlainTextPasswordIsValid);
+            var credentials = new AccountCredentials { EmailAddress = VALID_EMAILADDRESS, PlainTextPassword = password };
+            Assert.Equal(TestTryValidate(credentials), shouldBeValid);
         }
     }
 }

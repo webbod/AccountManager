@@ -29,7 +29,7 @@ namespace AccountManager.UnitTests.Data
             return new AccountCredentials
             {
                 EmailAddress = $"{Guid.NewGuid().ToString()}@test.com",
-                PlainTextPassword = $"Aa1!{Guid.NewGuid().ToString()}"
+                PlainTextPassword = $"Aa1!{Guid.NewGuid().ToString()}".Substring(0, 32)
             };
         }
 
