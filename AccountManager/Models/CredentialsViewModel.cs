@@ -22,5 +22,11 @@ namespace AccountManager.Models
         public override string PlainTextPassword { get => base.PlainTextPassword; set => base.PlainTextPassword = value; }
 
         public bool WasSaved { get; set; }
+
+        public void HasBeenSaved()
+        {
+            WasSaved= true;
+            PlainTextPassword = string.Empty;
+        }
     }
 }

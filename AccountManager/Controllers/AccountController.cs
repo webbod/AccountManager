@@ -35,10 +35,7 @@ namespace AccountManager.Controllers
                 if (ModelState.IsValid)
                 {
                     _InserterService.Insert(model);
-                    model.WasSaved = true;
-
-                    // we don't need this anymore
-                    model.PlainTextPassword = string.Empty;
+                    model.HasBeenSaved();
 
                     return View(model);
                 }
@@ -47,7 +44,6 @@ namespace AccountManager.Controllers
             {
                 // reloading the success screen should return a blank form
                 model = new CredentialsViewModel();
-                ModelState.AddModelError("AccountExists", "That account already exists");
             }
 
             return View(model);
