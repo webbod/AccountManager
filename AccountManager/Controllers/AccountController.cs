@@ -45,6 +45,8 @@ namespace AccountManager.Controllers
             }
             catch (NotSupportedException)
             {
+                // reloading the success screen should return a blank form
+                model = new CredentialsViewModel();
                 ModelState.AddModelError("AccountExists", "That account already exists");
             }
 
