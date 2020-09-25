@@ -13,7 +13,7 @@ namespace AccountManager.Data.Repositories
     /// <summary>
     /// Acts as a facade to the Account sql data store
     /// </summary>
-    public class AccountSqlRepository : IAccountFinder, IAccountUpdater, IAccountDeleter
+    public class AccountSqlRepository : IAccountFinder, IAccountUpdater, IAccountDeleter, IAccountInserter
     {
         private string _ConnectionString;
 
@@ -55,18 +55,17 @@ namespace AccountManager.Data.Repositories
             return new Account_Delete(emailAddress, _ConnectionString).ExecuteNonQuery();
         }
 
+        /// <exception cref="KeyNotFoundException">If the account is not found</exception>
         public IAccount Update(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
-            
-            try
-            {
-                return UpdateAccount(credentials);
-            }
-            catch(KeyNotFoundException)
-            {
-                return CreateAccount(credentials);
-            }
+            return UpdateAccount(credentials);
+        }
+
+        public IAccount Insert(IAccountCredentials credentials)
+        {
+            AccountCredentials.TryValidate(credentials);
+            return InsertAccount(credentials);
         }
 
         private IAccount CreateAccount(IAccountCredentials credentials)
@@ -77,6 +76,20 @@ namespace AccountManager.Data.Repositories
             return account;
         }
 
+        /// <exception cref="NotSupportedException">If the account already exists</exception>
+        private IAccount InsertAccount(IAccountCredentials credentials)
+        {
+            try
+            {
+                Find(credentials.EmailAddress);
+                throw new NotSupportedException();
+            }
+            catch (KeyNotFoundException)
+            {
+                return UpdateAccount(credentials);
+            }
+        }
+
         private IAccount UpdateAccount(IAccountCredentials credentials)
         {
             var account = ((Account)Find(credentials.EmailAddress)).ApplyNewCredentials(credentials);
@@ -84,5 +97,7 @@ namespace AccountManager.Data.Repositories
 
             return account;
         }
+
+
     }
 }
