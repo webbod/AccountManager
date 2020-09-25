@@ -6,6 +6,9 @@
     public interface IAccountCredentials
     {
         string EmailAddress { get; set; }
+        bool EmailAddressIsValid { get; }
+
         string PlainTextPassword { get; set; }
+        bool PlainTextPasswordIsValid { get; }
     }
 }

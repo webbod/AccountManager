@@ -53,6 +53,10 @@ namespace AccountManager.Domain.Models
                 string.IsNullOrEmpty(credentials?.PlainTextPassword))
                 throw new ArgumentNullException();
 
+            if (!credentials.EmailAddressIsValid ||
+                !credentials.PlainTextPasswordIsValid)
+                throw new ArgumentOutOfRangeException();
+
             return true;
         }
     }
