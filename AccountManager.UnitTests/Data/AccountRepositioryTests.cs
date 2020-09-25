@@ -42,7 +42,7 @@ namespace AccountManager.UnitTests.Data
         public void ANewAccountCanBeInsertedIntoTheDataStore()
         {
             var credentials = GenerateCredentials();
-            var account = _AccountRepository.Update(credentials);
+            var account = _AccountRepository.Insert(credentials);
 
             var unexpected = 0;
             Assert.NotEqual(unexpected, account.Id);
@@ -54,7 +54,7 @@ namespace AccountManager.UnitTests.Data
         public void AnAccountCanBeFoundByEmailAddress()
         {
             var credentials = GenerateCredentials();
-            var account = _AccountRepository.Update(credentials);
+            var account = _AccountRepository.Insert(credentials);
 
             var otherAccount = _AccountRepository.Find(account.EmailAddress);
 
@@ -67,7 +67,7 @@ namespace AccountManager.UnitTests.Data
         public void ADeletedAccountCanNoLongerBeFound()
         {
             var credentials = GenerateCredentials();
-            var account = _AccountRepository.Update(credentials);
+            var account = _AccountRepository.Insert(credentials);
 
             _AccountRepository.Delete(account.EmailAddress, true);
 
@@ -83,7 +83,7 @@ namespace AccountManager.UnitTests.Data
                 PlainTextPassword = "Zz0)dgh3628..AA" 
             };
 
-            var account = _AccountRepository.Update(initialCredentials);
+            var account = _AccountRepository.Insert(initialCredentials);
 
             var initialAccountId = account.Id;
             var initialHashedPassword = ((Account)account).HashedPassword;
@@ -98,5 +98,25 @@ namespace AccountManager.UnitTests.Data
 
             CleanUp(account.EmailAddress);
         }
+
+        [Fact]
+        public void YouCannotUpdateAnAccountThatDoesNotExist()
+        {
+            var credentials = GenerateCredentials();
+            Assert.Throws<KeyNotFoundException>(() => _AccountRepository.Update(credentials));
+        }
+
+        [Fact]
+        public void YouCannotInsertTheSameAccountMoreThanOnce()
+        {
+            var credentials = GenerateCredentials();
+
+            var account = _AccountRepository.Insert(credentials);
+
+            Assert.Throws<NotSupportedException>(() => _AccountRepository.Insert(credentials));
+
+            CleanUp(account.EmailAddress);
+        }
+
     }
 }
