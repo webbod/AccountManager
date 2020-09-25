@@ -86,7 +86,10 @@ namespace AccountManager.Data.Repositories
             }
             catch (KeyNotFoundException)
             {
-                return UpdateAccount(credentials);
+                var account = new Account(credentials);
+                account.Id = new Account_Insert(account, _ConnectionString).ExecuteNonQuery();
+
+                return account;
             }
         }
 
