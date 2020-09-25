@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AccountManager.Interfaces.DataStore
+﻿namespace AccountManager.Interfaces.DataStore
 {
     /// <summary>
     /// Describes settings to configure a data store

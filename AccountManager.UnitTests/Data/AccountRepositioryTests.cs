@@ -1,6 +1,5 @@
 ﻿using AccountManager.Data;
 using AccountManager.Data.DTO;
-using AccountManager.Data.Helpers;
 using AccountManager.Data.Repositories;
 using AccountManager.Domain.Models;
 using System;
@@ -24,14 +23,11 @@ namespace AccountManager.UnitTests.Data
             _AccountRepository.Initalise(config);
         }
 
-        private AccountCredentials GenerateCredentials()
+        private AccountCredentials GenerateCredentials() => new AccountCredentials
         {
-            return new AccountCredentials
-            {
-                EmailAddress = $"{Guid.NewGuid().ToString()}@test.com",
-                PlainTextPassword = $"Aa1!{Guid.NewGuid().ToString()}".Substring(0, 32)
-            };
-        }
+            EmailAddress = $"{Guid.NewGuid()}@test.com",
+            PlainTextPassword = $"Aa1!{Guid.NewGuid()}".Substring(0, 32)
+        };
 
         private void CleanUp(string emailAddress)
         {

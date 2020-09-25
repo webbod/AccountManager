@@ -5,7 +5,6 @@ using AccountManager.Interfaces.DataStore;
 using AccountManager.Interfaces.Accounts;
 using AccountManager.Interfaces.Accounts.Repository;
 using System.Collections.Generic;
-using System.Data.Common;
 using System;
 
 namespace AccountManager.Data.Repositories
@@ -25,7 +24,7 @@ namespace AccountManager.Data.Repositories
         }
 
         /// <exception cref="KeyNotFoundException"></exception>
-        public Interfaces.Accounts.IAccount Find(string emailAddress)
+        public IAccount Find(string emailAddress)
         {
             var account = new Account_Find(emailAddress, _ConnectionString).ExecuteQuery();
 
@@ -37,7 +36,7 @@ namespace AccountManager.Data.Repositories
             return account;
         }
 
-        public Interfaces.Accounts.IAccount Find(IAccountCredentials credentials)
+        public IAccount Find(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
             return Find(credentials.EmailAddress);
@@ -55,7 +54,7 @@ namespace AccountManager.Data.Repositories
             return new Account_Delete(emailAddress, _ConnectionString).ExecuteNonQuery();
         }
 
-        public Interfaces.Accounts.IAccount Update(IAccountCredentials credentials)
+        public IAccount Update(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
             
@@ -69,7 +68,7 @@ namespace AccountManager.Data.Repositories
             }
         }
 
-        private Interfaces.Accounts.IAccount CreateAccount(IAccountCredentials credentials)
+        private IAccount CreateAccount(IAccountCredentials credentials)
         {
             var account = new Account(credentials);
             account.Id = new Account_Insert(account, _ConnectionString).ExecuteNonQuery();
@@ -77,7 +76,7 @@ namespace AccountManager.Data.Repositories
             return account;
         }
 
-        private Interfaces.Accounts.IAccount UpdateAccount(IAccountCredentials credentials)
+        private IAccount UpdateAccount(IAccountCredentials credentials)
         {
             var account = ((Account)Find(credentials.EmailAddress)).ApplyNewCredentials(credentials);
             account.Id = new Account_Update(account, _ConnectionString).ExecuteNonQuery();

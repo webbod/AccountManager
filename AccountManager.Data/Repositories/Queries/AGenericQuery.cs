@@ -52,7 +52,7 @@ namespace AccountManager.Data.Repositories.Queries
         {
             using (SqlCommand _Command = QueryService.ConfigureStoredProcedureCommand(commandText, _Parameters, _ConnectionString))
             {
-                return QueryService.MapResults<TReturnType>(_Command, Mapper);
+                return QueryService.MapResults(_Command, Mapper);
             }
         }
 

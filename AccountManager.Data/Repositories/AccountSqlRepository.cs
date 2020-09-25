@@ -24,7 +24,7 @@ namespace AccountManager.Data.Repositories
         }
 
         /// <exception cref="KeyNotFoundException"></exception>
-        public Interfaces.Accounts.IAccount Find(string emailAddress)
+        public IAccount Find(string emailAddress)
         {
             var account = new Account_Find(emailAddress, _ConnectionString).ExecuteQuery();
 
@@ -36,7 +36,7 @@ namespace AccountManager.Data.Repositories
             return account;
         }
 
-        public Interfaces.Accounts.IAccount Find(IAccountCredentials credentials)
+        public IAccount Find(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
             return Find(credentials.EmailAddress);
@@ -55,20 +55,20 @@ namespace AccountManager.Data.Repositories
         }
 
         /// <exception cref="KeyNotFoundException">If the account is not found</exception>
-        public Interfaces.Accounts.IAccount Update(IAccountCredentials credentials)
+        public IAccount Update(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
             return UpdateAccount(credentials);
         }
 
-        public Interfaces.Accounts.IAccount Insert(IAccountCredentials credentials)
+        public IAccount Insert(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
             return InsertAccount(credentials);
         }
 
         /// <exception cref="NotSupportedException">If the account already exists</exception>
-        private Interfaces.Accounts.IAccount InsertAccount(IAccountCredentials credentials)
+        private IAccount InsertAccount(IAccountCredentials credentials)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace AccountManager.Data.Repositories
             }
         }
 
-        private Interfaces.Accounts.IAccount UpdateAccount(IAccountCredentials credentials)
+        private IAccount UpdateAccount(IAccountCredentials credentials)
         {
             var account = ((Account)Find(credentials.EmailAddress)).ApplyNewCredentials(credentials);
             account.Id = new Account_Update(account, _ConnectionString).ExecuteNonQuery();

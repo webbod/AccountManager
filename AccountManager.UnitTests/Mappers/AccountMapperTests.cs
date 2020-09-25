@@ -1,9 +1,5 @@
-using AccountManager.Data.DTO;
-using AccountManager.Data.Helpers;
 using AccountManager.Data.Repositories.Mappers;
-using AccountManager.Domain.Models;
 using AccountManager.UnitTests.Mocks.DataRecords;
-using System;
 using Xunit;
 
 namespace AccountManager.UnitTests.Data

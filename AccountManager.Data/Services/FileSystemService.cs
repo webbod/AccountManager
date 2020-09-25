@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
-using AccountManager.Interfaces.Accounts;
-using System.Runtime.CompilerServices;
-using System.Text.Json.Serialization;
 using System.Text.Json;
 
 namespace AccountManager.Data.Services
@@ -75,7 +70,7 @@ namespace AccountManager.Data.Services
 
         public static void Update<TInput>(string fileName, TInput data, string rootPath) where TInput : class, new()
         {
-            WriteData(JsonSerializer.Serialize<TInput>(data), fileName, rootPath);
+            WriteData(JsonSerializer.Serialize(data), fileName, rootPath);
         }
     }
 }
