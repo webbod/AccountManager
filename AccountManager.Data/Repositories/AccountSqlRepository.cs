@@ -5,7 +5,6 @@ using AccountManager.Interfaces.DataStore;
 using AccountManager.Interfaces.Accounts;
 using AccountManager.Interfaces.Accounts.Repository;
 using System.Collections.Generic;
-using System.Data.Common;
 using System;
 
 namespace AccountManager.Data.Repositories
@@ -66,14 +65,6 @@ namespace AccountManager.Data.Repositories
         {
             AccountCredentials.TryValidate(credentials);
             return InsertAccount(credentials);
-        }
-
-        private Interfaces.Accounts.IAccount CreateAccount(IAccountCredentials credentials)
-        {
-            var account = new Account(credentials);
-            account.Id = new Account_Insert(account, _ConnectionString).ExecuteNonQuery();
-
-            return account;
         }
 
         /// <exception cref="NotSupportedException">If the account already exists</exception>
