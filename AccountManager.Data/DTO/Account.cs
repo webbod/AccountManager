@@ -34,7 +34,7 @@ namespace AccountManager.Data.DTO
         private string _HashedPassword;
         internal string HashedPassword {
             get => _HashedPassword;
-            set
+            private set
             {
                 if(!string.IsNullOrEmpty(value)) { _HashedPassword = value; }
             }
@@ -48,15 +48,18 @@ namespace AccountManager.Data.DTO
         /// <param name="credentials"></param>
         internal Account(IAccountCredentials credentials)
         {
-            var hashedPassword = HashingService.HashPassword(credentials);
-
             EmailAddress = credentials.EmailAddress;
-            HashedPassword = hashedPassword;
+            UpdateHashedPassword(credentials);
+        }
+
+        private void UpdateHashedPassword(IAccountCredentials credentials)
+        {
+            HashedPassword = HashingService.HashPassword(credentials);
         }
 
         internal Account ApplyNewCredentials(IAccountCredentials credentials)
         {
-            HashedPassword = HashingService.HashPassword(credentials);
+            UpdateHashedPassword(credentials);
             return this;
         }
 
