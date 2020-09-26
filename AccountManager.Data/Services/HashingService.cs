@@ -13,6 +13,8 @@ namespace AccountManager.Data.Helpers
     /// all the time, the data that isn't used influences the obfuscation process
     /// you need to bruteforce it, different combinations of input and salt
     /// might generate the same output, but that won't help you recover a valid password
+    ///
+    /// Feel free to change any of the prime numbers, but not after you start encoding stuff
     /// </summary>
     internal class HashingService
     {
