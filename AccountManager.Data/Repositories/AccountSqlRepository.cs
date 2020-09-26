@@ -44,14 +44,15 @@ namespace AccountManager.Data.Repositories
 
 
         /// <exception cref="InvalidOperationException"></exception>
-        public int Delete(string emailAddress, bool deleteIt = false)
+        public int Delete(IAccountCredentials credentials, bool deleteIt = false)
         {
             if (!deleteIt)
             {
                 throw new InvalidOperationException();
             }
 
-            return new Account_Delete(emailAddress, _ConnectionString).ExecuteNonQuery();
+            AccountCredentials.TryValidate(credentials);
+            return new Account_Delete(credentials, _ConnectionString).ExecuteNonQuery();
         }
 
         /// <exception cref="KeyNotFoundException">If the account is not found</exception>
