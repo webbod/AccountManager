@@ -58,18 +58,19 @@ namespace AccountManager.Data.Repositories
         public IAccount Update(IAccountCredentials credentials)
         {
             AccountCredentials.TryValidate(credentials);
-            return UpdateAccount(credentials);
-        }
+            
+            var account = (Account)Find(credentials.EmailAddress);
+            account.ApplyNewCredentials(credentials)
+            account.Id = new Account_Update(account, _ConnectionString).ExecuteNonQuery();
 
-        public IAccount Insert(IAccountCredentials credentials)
-        {
-            AccountCredentials.TryValidate(credentials);
-            return InsertAccount(credentials);
+            return account;
         }
 
         /// <exception cref="NotSupportedException">If the account already exists</exception>
-        private IAccount InsertAccount(IAccountCredentials credentials)
+        public IAccount Insert(IAccountCredentials credentials)
         {
+            AccountCredentials.TryValidate(credentials);
+            
             try
             {
                 Find(credentials.EmailAddress);
@@ -83,15 +84,5 @@ namespace AccountManager.Data.Repositories
                 return account;
             }
         }
-
-        private IAccount UpdateAccount(IAccountCredentials credentials)
-        {
-            var account = ((Account)Find(credentials.EmailAddress)).ApplyNewCredentials(credentials);
-            account.Id = new Account_Update(account, _ConnectionString).ExecuteNonQuery();
-
-            return account;
-        }
-
-
     }
 }
