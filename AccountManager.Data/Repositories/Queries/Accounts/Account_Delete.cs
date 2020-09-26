@@ -15,9 +15,9 @@ namespace AccountManager.Data.Repositories.Queries.Accounts
             DatabaseDependency.Element.Column,
             DatabaseDependency.MaintainenceRisk.ParameterDrift
         )]
-        public Account_Delete(string emailAddress, string connectionString = null) : base(connectionString)
+        public Account_Delete(IAccountCredentials credentials, string connectionString = null) : base(connectionString)
         {
-            _Parameters.Add(new SqlParameter("@EmailAddress", SqlDbType.NVarChar) { Value = emailAddress });
+            _Parameters.Add(new SqlParameter("@EmailAddress", SqlDbType.NVarChar) { Value = credentials?.EmailAddress });
         }
 
 
