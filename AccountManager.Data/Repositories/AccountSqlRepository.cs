@@ -57,8 +57,6 @@ namespace AccountManager.Data.Repositories
         /// <exception cref="KeyNotFoundException">If the account is not found</exception>
         public IAccount Update(IAccountCredentials credentials)
         {
-            AccountCredentials.TryValidate(credentials);
-            
             var account = (Account)Find(credentials.EmailAddress);
             account.ApplyNewCredentials(credentials)
             account.Id = new Account_Update(account, _ConnectionString).ExecuteNonQuery();
@@ -69,8 +67,6 @@ namespace AccountManager.Data.Repositories
         /// <exception cref="NotSupportedException">If the account already exists</exception>
         public IAccount Insert(IAccountCredentials credentials)
         {
-            AccountCredentials.TryValidate(credentials);
-            
             try
             {
                 Find(credentials.EmailAddress);
