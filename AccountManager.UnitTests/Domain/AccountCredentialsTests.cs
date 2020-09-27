@@ -1,3 +1,4 @@
+using AccountManager.Domain.Extensions;
 using AccountManager.Domain.Models;
 using System;
 using Xunit;
@@ -13,7 +14,7 @@ namespace AccountManager.UnitTests.Domain
         {
             try
             {
-                return AccountCredentials.TryValidate(credentials);
+                return credentials.TryValidate();
             }
             catch (ArgumentNullException)
             {

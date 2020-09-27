@@ -1,6 +1,6 @@
 ﻿using AccountManager.Interfaces.DataStore;
 
-namespace AccountManager.Data
+namespace AccountManager.SqlDataStore
 {
     public class SqlDataStoreConfigurationSettings : ISetOfConfigrationSettings
     {

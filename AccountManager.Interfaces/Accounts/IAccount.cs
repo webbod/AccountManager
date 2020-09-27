@@ -9,5 +9,7 @@
         string EmailAddress { get; }
         
         bool Equals(IAccountCredentials credentials);
+
+        IAccount ApplyNewCredentials(IAccountCredentials credentials);
     }
 }

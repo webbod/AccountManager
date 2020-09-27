@@ -1,6 +1,6 @@
-using AccountManager.Data.DTO;
-using AccountManager.Data.Helpers;
+using AccountManager.Domain.Extensions;
 using AccountManager.Domain.Models;
+using AccountManager.SqlDataStore.DTO;
 using Xunit;
 
 namespace AccountManager.UnitTests.Data
@@ -43,7 +43,7 @@ namespace AccountManager.UnitTests.Data
             Assert.Equal(credentials.EmailAddress, account.EmailAddress);
             Assert.NotEqual(credentials.PlainTextPassword, account.HashedPassword);
 
-            var expected = HashingService.HashPassword(credentials);
+            var expected =  credentials.HashPassword();
             Assert.Equal(expected, account.HashedPassword);
         }
 

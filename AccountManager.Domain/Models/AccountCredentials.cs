@@ -1,4 +1,5 @@
-﻿using AccountManager.Interfaces.Accounts;
+﻿using AccountManager.Domain.Services;
+using AccountManager.Interfaces.Accounts;
 using System;
 using System.Text.RegularExpressions;
 
@@ -39,25 +40,6 @@ namespace AccountManager.Domain.Models
                     PlainTextPasswordMaxLength >= PlainTextPassword.Length &&
                     regX.IsMatch(PlainTextPassword);
             }
-        }
-
-        /// <summary>
-        /// Confirms that the email address and password have been set
-        /// </summary>
-        /// <param name="credentials"></param>
-        /// <returns>validated credentials</returns>
-        /// <exception cref="ArgumentNullException">if null or empty</exception>
-        public static bool TryValidate(IAccountCredentials credentials)
-        {
-            if (string.IsNullOrEmpty(credentials?.EmailAddress) || 
-                string.IsNullOrEmpty(credentials?.PlainTextPassword))
-                throw new ArgumentNullException();
-
-            if (!credentials.EmailAddressIsValid ||
-                !credentials.PlainTextPasswordIsValid)
-                throw new ArgumentOutOfRangeException();
-
-            return true;
         }
     }
 }

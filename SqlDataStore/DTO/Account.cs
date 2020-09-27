@@ -1,7 +1,7 @@
-﻿using AccountManager.Data.Helpers;
+﻿using AccountManager.Domain.Extensions;
 using AccountManager.Interfaces.Accounts;
 
-namespace AccountManager.Data.DTO
+namespace AccountManager.SqlDataStore.DTO
 {
     /// <summary>
     /// Models an Account record
@@ -54,10 +54,10 @@ namespace AccountManager.Data.DTO
 
         private void UpdateHashedPassword(IAccountCredentials credentials)
         {
-            HashedPassword = HashingService.HashPassword(credentials);
+            HashedPassword =  credentials.HashPassword();
         }
 
-        internal Account ApplyNewCredentials(IAccountCredentials credentials)
+        public IAccount ApplyNewCredentials(IAccountCredentials credentials)
         {
             UpdateHashedPassword(credentials);
             return this;
@@ -68,11 +68,9 @@ namespace AccountManager.Data.DTO
         /// </summary>
         public bool Equals(IAccountCredentials credentials)
         {
-            var hashedPassword = HashingService.HashPassword(credentials);
-
             return
                 EmailAddress.ToLower() == credentials.EmailAddress.ToLower() &&
-                HashedPassword == hashedPassword;
+                HashedPassword == credentials.HashPassword();
         }
     }
 }

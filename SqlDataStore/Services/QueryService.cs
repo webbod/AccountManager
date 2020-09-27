@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace AccountManager.Data.Services
+namespace AccountManager.SqlDataStore.Services
 {
     /// <summary>
     /// Pulls all of the SqlCommand, SqlConnection and SqlDataReader references into one place 

@@ -1,13 +1,14 @@
-﻿using AccountManager.Data.DTO;
-using AccountManager.Data.Repositories.Queries.Accounts;
+﻿using AccountManager.SqlDataStore.DTO;
+using AccountManager.SqlDataStore.Repositories.Queries.Accounts;
 using AccountManager.Domain.Models;
 using AccountManager.Interfaces.DataStore;
 using AccountManager.Interfaces.Accounts;
 using AccountManager.Interfaces.Accounts.Repository;
 using System.Collections.Generic;
 using System;
+using AccountManager.Domain.Extensions;
 
-namespace AccountManager.Data.Repositories
+namespace AccountManager.SqlDataStore.Repositories
 {
     /// <summary>
     /// Acts as a facade to the Account sql data store
@@ -38,7 +39,7 @@ namespace AccountManager.Data.Repositories
 
         public IAccount Find(IAccountCredentials credentials)
         {
-            AccountCredentials.TryValidate(credentials);
+            credentials.TryValidate();
             return Find(credentials.EmailAddress);
         }
 

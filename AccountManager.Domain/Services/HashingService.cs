@@ -1,10 +1,11 @@
 ﻿using AccountManager.Domain.Models;
+using AccountManager.Domain.Extensions;
 using AccountManager.Interfaces.Accounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AccountManager.Data.Helpers
+namespace AccountManager.Domain.Services
 {
     /// <summary>
     /// A simple alternative to the md5 hash that transforms
@@ -26,7 +27,7 @@ namespace AccountManager.Data.Helpers
 
         public HashingService(IAccountCredentials credentials)
         {
-            AccountCredentials.TryValidate(credentials);
+            credentials.TryValidate();
             _Salt = credentials.EmailAddress;
             _Input = credentials.PlainTextPassword;
 

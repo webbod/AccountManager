@@ -10,5 +10,6 @@
 
         string PlainTextPassword { get; set; }
         bool PlainTextPasswordIsValid { get; }
+
     }
 }

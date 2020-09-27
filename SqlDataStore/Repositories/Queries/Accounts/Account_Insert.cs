@@ -1,6 +1,6 @@
-﻿using AccountManager.Data.DTO;
+﻿using AccountManager.SqlDataStore.DTO;
 
-namespace AccountManager.Data.Repositories.Queries.Accounts
+namespace AccountManager.SqlDataStore.Repositories.Queries.Accounts
 {
     /// <summary>
     /// Models a command to insert an Account

@@ -4,16 +4,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <!--Allows Internal methods to be unit tested-->
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-      <_Parameter1>AccountManager.UnitTests</_Parameter1>
-    </AssemblyAttribute>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\AccountManager.Attributes\AccountManager.Attributes.csproj" />
     <ProjectReference Include="..\AccountManager.Domain\AccountManager.Domain.csproj" />

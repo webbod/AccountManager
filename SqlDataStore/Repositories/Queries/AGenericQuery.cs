@@ -1,10 +1,10 @@
-﻿using AccountManager.Data.Services;
+﻿using AccountManager.SqlDataStore.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace AccountManager.Data.Repositories.Queries
+namespace AccountManager.SqlDataStore.Repositories.Queries
 {
     /// <summary>
     /// Mediates the interface between the business logic and the sql dataStore

@@ -1,8 +1,8 @@
-﻿using AccountManager.Data.DTO;
+﻿using AccountManager.SqlDataStore.DTO;
 using AccountManager.Interfaces.DataStore;
 using System.Data;
 
-namespace AccountManager.Data.Repositories.Mappers
+namespace AccountManager.SqlDataStore.Repositories.Mappers
 {
     /// <summary>
     /// Maps fields in a DataRecord in to an Account

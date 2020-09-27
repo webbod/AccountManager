@@ -1,10 +1,9 @@
-﻿using AccountManager.Data.DTO;
-using AccountManager.Interfaces.Accounts;
+﻿using AccountManager.SqlDataStore.DTO;
 using AccountManager.Interfaces.Attributes;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace AccountManager.Data.Repositories.Queries.Accounts
+namespace AccountManager.SqlDataStore.Repositories.Queries.Accounts
 {
     /// <summary>
     /// Models a command to delete an Account

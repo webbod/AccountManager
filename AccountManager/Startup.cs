@@ -1,6 +1,6 @@
-﻿using AccountManager.Data;
-using AccountManager.Data.Repositories;
-using AccountManager.Interfaces.Accounts.Repository;
+﻿using AccountManager.Interfaces.Accounts.Repository;
+using AccountManager.SqlDataStore;
+using AccountManager.SqlDataStore.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

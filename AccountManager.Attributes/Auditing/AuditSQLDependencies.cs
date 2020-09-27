@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AccountManager.Data.Auditing
+namespace AccountManager.Attributes.Auditing
 {
     public class AuditSQLDependencies
     {

@@ -1,7 +1,7 @@
-﻿using AccountManager.Data;
-using AccountManager.Data.DTO;
-using AccountManager.Data.Repositories;
-using AccountManager.Domain.Models;
+﻿using AccountManager.Domain.Models;
+using AccountManager.SqlDataStore;
+using AccountManager.SqlDataStore.DTO;
+using AccountManager.SqlDataStore.Repositories;
 using System;
 using System.Collections.Generic;
 using Xunit;

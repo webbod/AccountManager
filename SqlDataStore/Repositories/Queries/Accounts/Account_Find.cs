@@ -1,11 +1,11 @@
-﻿using AccountManager.Data.DTO;
-using AccountManager.Data.Repositories.Mappers;
+﻿using AccountManager.SqlDataStore.DTO;
+using AccountManager.SqlDataStore.Repositories.Mappers;
 using AccountManager.Interfaces.Attributes;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace AccountManager.Data.Repositories.Queries.Accounts
+namespace AccountManager.SqlDataStore.Repositories.Queries.Accounts
 {
     /// <summary>
     /// Models a command to find an Account

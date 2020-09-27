@@ -1,4 +1,4 @@
-using AccountManager.Data.Repositories.Mappers;
+using AccountManager.SqlDataStore.Repositories.Mappers;
 using AccountManager.UnitTests.Mocks.DataRecords;
 using Xunit;
 
