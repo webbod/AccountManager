@@ -6,7 +6,7 @@ namespace AccountManager.SqlDataStore.DTO
     /// <summary>
     /// Models an Account record
     /// </summary>
-    public class Account : IAccount
+    internal class Account : IAccount
     {
         // this is a write-once-read-many property
         private int _Id;
