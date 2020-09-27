@@ -1,4 +1,5 @@
 ﻿using AccountManager.Data.DTO;
+using AccountManager.Interfaces.Accounts;
 using AccountManager.Interfaces.Attributes;
 using System.Data;
 using System.Data.SqlClient;
@@ -15,9 +16,9 @@ namespace AccountManager.Data.Repositories.Queries.Accounts
             DatabaseDependency.Element.Column,
             DatabaseDependency.MaintainenceRisk.ParameterDrift
         )]
-        public Account_Delete(IAccountCredentials credentials, string connectionString = null) : base(connectionString)
+        public Account_Delete(string emailAddress, string connectionString = null) : base(connectionString)
         {
-            _Parameters.Add(new SqlParameter("@EmailAddress", SqlDbType.NVarChar) { Value = credentials?.EmailAddress });
+            _Parameters.Add(new SqlParameter("@EmailAddress", SqlDbType.NVarChar) { Value = emailAddress });
         }
 
 

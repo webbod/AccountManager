@@ -34,7 +34,7 @@ namespace AccountManager.Data.DTO
         private string _HashedPassword;
         internal string HashedPassword {
             get => _HashedPassword;
-            private set
+            set
             {
                 if(!string.IsNullOrEmpty(value)) { _HashedPassword = value; }
             }
