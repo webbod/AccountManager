@@ -9,7 +9,7 @@ This is where most of the complexity in the solution sits.
 1. **Account** models an Account database record, all of the constructors are marked as internal - this is a DTO ought not be created outside of this assembly.
 
 #### Services
-1. **HashingService** a simple alternative to MD5 that generates deterministic garbage - feel free to customise the prime numbers **before** you hash any data.
+1. **HashingService** [this has moved into AccountManager.Domain]
 2. **QueryService** encapsulates all of the SQL connection/command object with a simple mapping method.
 
 #### Repositories
