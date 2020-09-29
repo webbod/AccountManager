@@ -1,5 +1,4 @@
 ﻿# Data services
-This is where most of the complexity in the solution sits.
-
+This is a *legacy* project - most of the code is in AccountManager.SqlDataStore
 
 
